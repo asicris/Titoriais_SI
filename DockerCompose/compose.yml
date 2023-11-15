@@ -1,0 +1,23 @@
+services:
+
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 9090:80
+    environment:
+      WORDPRESS_DB_HOST: basedatos
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: renaido
+      WORDPRESS_DB_NAME: bdwordpress
+    depends_on:
+      - basedatos
+
+  basedatos:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: bdwordpress
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: renaido
+      MYSQL_ROOT_PASSWORD: Abc123.
