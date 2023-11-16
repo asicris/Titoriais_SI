@@ -2,7 +2,7 @@
 
 Algúns dos comandos empregados para ficheiros e directorios tamén serven para tratar con enlaces simbólicos, claves de rexistro, certificados, variables, etc. A todos estes recursos PowerShell chámalles **ítems**, e aos manexadores que tratan cada tipo de recurso, chámalles **provedores**(providers)
 
-## Moverse pola estrutura de directorios  
+## Moverse pola estrutura de directorios - Localización
 Para moverse polos directorios empregamos 4 **cmdlets**.
 ```console
 Get-Location [-PSDrive <DISPOSITIVO>] [-StackName <NOME_PILA>]
@@ -39,14 +39,20 @@ Poderíamos movernos ao **rexistro** tamén, por exemplo:
 ```console
 Push-Location [-Path <RUTA>] [-StackName <NOME_PILA>]
 ```
-
+Engade unha localización á pila de localizacións.
 ```console
 Pop-Location [-StackName <NOME_PILA>]
 ```
+Volta a localización anterior, saca a última localización da pila.
+
+
+[1] Administrar a ubicación actual por Microsoft (https://learn.microsoft.com/es-es/powershell/scripting/samples/managing-current-location?view=powershell-7.3)
 
 ## Exercicios
 1. Sitúate no directorio do usuario que estás a utilizar.
 1. Comproba que estás situado nese directorio.
-1. Accede ao rexistro á carpeta Software\Microsoft.
+1. Accede ao rexistro á carpeta Software.
 1. Fai unha listaxe desa carpeta do rexistro
-1. Volta á unidade C:\
+1. Volta á unidade C:
+1. Amosa a localización actual e logo a localización anterior. Onde estaba cando chegou a esta carpeta.
+
