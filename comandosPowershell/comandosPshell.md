@@ -4,8 +4,8 @@ Algúns dos comandos empregados para ficheiros e directorios tamén serven para 
 
 ## Moverse pola estrutura de directorios - Localización
 Para moverse polos directorios empregamos 4 **cmdlets**.
-```console
-Get-Location [-PSDrive <DISPOSITIVO>] [-StackName <NOME_PILA>]
+```PowerShell
+Get-Location [-PSDrive <DISPOSITIVO>] 
 ```
 Indica a nosa localización na estrutura de directorios actual. É similar a `pwd`
 Para saber a nosa localización poñemos soamente:
@@ -16,8 +16,8 @@ Se por exemplo, estamos navegando noutro sitio, por exemplo, o rexistro, e quere
 
 `Get-Location -PsDrive C`
 
-```console
-Set-Location [-Path <RUTA>] [-StackName <NOME_PILA>]
+```PowerShell
+Set-Location [-Path <RUTA>] 
 ```
 Accede a unha ruta que lle indiquemos no parámetro `-Path <ruta>`, é similar a `cd`.
 
@@ -36,12 +36,12 @@ Poderíamos movernos ao **rexistro** tamén, por exemplo:
 
 `Set-Location HKLM:\Software\Microsoft`
 
-```console
-Push-Location [-Path <RUTA>] [-StackName <NOME_PILA>]
+```PowerShell
+Push-Location [-Path <RUTA>] 
 ```
 Engade unha localización á pila de localizacións.
-```console
-Pop-Location [-StackName <NOME_PILA>]
+```PowerShell
+Pop-Location 
 ```
 Volta a localización anterior, saca a última localización da pila.
 
