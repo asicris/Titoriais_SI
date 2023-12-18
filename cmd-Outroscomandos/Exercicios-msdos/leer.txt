@@ -1,0 +1,2 @@
+Este directorio contén diferentes ficheiros PDF con instruccións de como empregar os comandos de msdos e crear os ficheiros .bat
+que son executables. Os chamados ficheiros por lotes,.
