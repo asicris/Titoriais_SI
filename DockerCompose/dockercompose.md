@@ -20,7 +20,8 @@ Hai dúas versións para a instalación de Docker-compose, a versión antiga e a
 Para saber a versión que temos podemos executar:
 + Versión antigua **v1**: `docker-compose version`
 + Versión v2: `docker compose version`
-!['Version'](images/version.png)
+!['Version']
+(images/version.png)
 
 O comando para lanzar na versión antiga **v1** é **docker-compose**, cun **-** entre as dúas palabras. `docker-compose up`
 
@@ -273,3 +274,12 @@ Se queremos comprobar os volúmenes compartidos con docker facemos `docker volum
 Se quero borrar todos os volumes na máquina host `docker volume prune`
 
 ![Docker volume prune](images/dockervolumeprune.png "Docker volume prune")
+---
+Documentos empregados:
+- [compose.yml](compose.yml)
+- [docker-compose-ex1.yml](docker-compose-ex1.yml)
+- - -
+###### *Creado por Cristina Puga Barreiros ©2023*
+![Creative Commons](images/ccbysa.png)
+
+    

@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>dockercompose.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="docker-compose">Docker-compose</h1>
+<h2 id="instalar-docker-en-caso-de-non-telo-instalado">Instalar docker en caso de non telo instalado</h2>
+<blockquote>
+<p><a href="https://docs.docker.com/desktop/install/linux-install/">Instalación en Linux</a></p>
+</blockquote>
+<p>Imos instalar Docker Desktop empregando os repositorios, para elo seguimos a documentación da páxina de información de docker:</p>
+<blockquote>
+<p><a href="https://docs.docker.com/engine/install/ubuntu/#set-up-the-repository">Instalar Docker Desktop en Ubuntu </a></p>
+</blockquote>
+<ul>
+<li>Instala Docker engine</li>
+<li>Instala Docker compose</li>
+</ul>
+<h3 id="instalar-docker-compose-solamente">Instalar docker-compose solamente</h3>
+<p>Hai dúas versións para a instalación de Docker-compose, a versión antiga e a versión <strong>v2</strong></p>
+<blockquote>
+<ul>
+<li><a href="https://docs.docker.com/compose/install/">Ligazón á documentación de instalar Docker Compose</a></li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li><a href="https://docs.docker.com/compose/compose-v2/">Ligazón á v2 de docker compose</a></li>
+</ul>
+</blockquote>
+<p>Para saber a versión que temos podemos executar:</p>
+<ul>
+<li>Versión antigua <strong>v1</strong>: <code>docker-compose version</code></li>
+<li>Versión v2: <code>docker compose version</code>
+<img src="images/version.png" alt="'Version'"></li>
+</ul>
+<p>O comando para lanzar na versión antiga <strong>v1</strong> é <strong>docker-compose</strong>, cun <strong>-</strong> entre as dúas palabras. <code>docker-compose up</code></p>
+<p>O comando para lanzar na versión v2 é <strong>docker compose</strong> sen <strong>-</strong>, separado por un espazo soamente.  <code>docker compose up</code></p>
+<p>Para ver que podemos executar con <strong>docker compose</strong> escribimos este comando na consola, e amosa as opcións:
+<img src="images/dockercomposeoption.png" alt="'Opcións de docker compose'" title="Opcións de docker compose"></p>
+<h2 id="ficheiro-yaml">Ficheiro yaml</h2>
+<p>En docker compose, o ficheiro <strong>.yaml</strong> ou <strong>.yml</strong>, contén as instruccións para xerar un entorno multicontedor.</p>
+<p>Haberá que incluir:</p>
+<ul>
+<li>Redes</li>
+<li>Volumes</li>
+<li>Variables de entorno</li>
+<li>Interelacións entre eles</li>
+<li>etcétera</li>
+</ul>
+<p>Yaml, é un formato de serialización, non é unha linguaxe de marcado. Convertiuse nun estándar porque é moi bo para crear ficheiros de propiedades ou de características, porque ten unha sintaxe moi estricta.</p>
+<blockquote>
+<p><a href="https://es.wikipedia.org/wiki/YAML">Información sobre Yaml na Wikipedia</a></p>
+</blockquote>
+<p>Está composto con claves: valor, despois dos <strong>:</strong> vai un <strong>espazo en branco</strong>. É moi importante manter a <strong>indentación</strong>.</p>
+<p>Por exemplo:</p>
+<pre class="hljs"><code><div>services:
+  wordpress:
+    image: wordpress
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
+    volumes:
+      - wordpress:/var/www/html
+</div></code></pre>
+<h2 id="comandos-para-a-xesti%C3%B3n-de-contenedores-up-stop-down">Comandos para a xestión de Contenedores: up, stop, down</h2>
+<ul>
+<li>
+<p>Iniciar un contenedor: up
+<code>docker compose up</code></p>
+</li>
+<li>
+<p>Para Contenedores: stop
+<code>docker compose stop</code></p>
+</li>
+<li>
+<p>Deter e eliminar contenedores: down
+<code>docker compose down</code></p>
+</li>
+</ul>
+<h2 id="primeiro-exemplo-servidor-nginx">Primeiro exemplo: Servidor nginx</h2>
+<p>Este exemplo é moi sinxelo. Imos facer un exemplo co servidor Web <strong>nginx</strong>.</p>
+<p>En Docker-compose trabállase no término de <strong>proxecto</strong>, que se refire a todo o entorno que imos lanzar co Docker-compose. Así que <strong>creamos unha carpeta</strong> co nome do proxecto.</p>
+<p><code>mkdir pr_nginx</code></p>
+<p>Creamos dentro o ficheiro <strong>docker-compose.yml</strong></p>
+<pre class="hljs"><code><div>version: '3'
+services:
+  nginx:
+    image: nginx
+    ports:
+    - &quot;80:80&quot;
+</div></code></pre>
+<p>O nome do servizo, neste caso &quot;nginx&quot; é personalizable, poderíamoslle por outro. Sen embargo, a imaxe que imos empregar é do <a href="https://hub.docker.com/search?q=">repositorio de imaxes de docker hub</a>, e debe levar o nome da imaxe no repositorio oficial <a href="https://hub.docker.com/_/nginx"><strong>&quot;nginx&quot;</strong></a>.</p>
+<h4 id="lanzamos-en-modo-interactivo-para-ver-a-sa%C3%ADda">Lanzamos en  modo interactivo para ver a saída</h4>
+<p>Entramos no directorio do proxecto e lanzamos o ficheiro que acabamos de crear no exemplo anterior:</p>
+<p>O comando para lanzar na versión antiga é <strong>docker-compose</strong>, cun <strong>-</strong> entre as dúas palabras. <code>docker-compose up</code></p>
+<p>O comando para lanzar na versión v2 é <strong>docker compose</strong> sen <strong>-</strong>.<br>
+<code>docker compose up</code></p>
+<p>En posteriores exemplos, cando esteamos en produción empregaremos <strong>-d</strong> para lanzalo en background, pero neste exemplo imos facelo interactivo para ver os resultados que amosan.</p>
+<p>A rede que se emprega neste exemplo, é a rede por defecto, aínda que para unir os contenedores, <em><strong>recoméndase crear unha rede propia</strong></em>.</p>
+<p><img src="images/nginx.png" alt="&quot;Saída exemplo &quot;" title="Saída exemplo"></p>
+<p>Vese como crea o contedor.
+Si accedemos desde o navegador a <a href="http://localhost:80">http://localhost:80</a> vése que está a funcionar o nginx.</p>
+<p>Na saída da Consola pode verse como nos conectamos desde un cliente con ip <em>172.18.0.1</em>, desde un navegador <em>Mozilla</em> e que se accede ao host <em>localhost</em>.</p>
+<p>Se facemos agora un <code>docker ps</code>, vemos o contedor que acaba de crear, que vemos que é un contenedor normal, xa que o que fai docker-compose é facilitar a creación dos mesmos.</p>
+<p><img src="images/dockerpsnginx.png" alt="&quot;docker ps&quot;" title="Docker ps"></p>
+<p>Se facemos un <code>docker compose ps</code> vemos o entorno de microcontedores que creou:</p>
+<p><img src="images/dockercomposepsnginx.png" alt="'Docker-compose ps'" title="Docker-compose ps"></p>
+<h3 id="acceder-desde-o-equipo-local-host-da-aula">Acceder desde o equipo local HOST da aula</h3>
+<p>En virtualBox, creamos unha redirección de portos, imos redireccionar o porto 80 do 8080.</p>
+<p><img src="images/reenviopuertos.png" alt="&quot;Reenvío de portos&quot;" title="Reenvío de portos"></p>
+<p>E si conectamos agora <em>desde a nosa máquina host</em> (a física).</p>
+<p><img src="images/nginx8080.png" alt="&quot;Nginx desde máquina local&quot;" title="Nginx desde máquina local"></p>
+<h2 id="docker-compose-exemplo-multim%C3%A1quina-wordpress-e-mysql">Docker-compose exemplo multimáquina: wordpress e mysql</h2>
+<p>Imos crear:</p>
+<ul>
+<li>Un contedor de <strong>WORDPRESS</strong>, chamado &quot;wordpress&quot;</li>
+<li>Un contedor de <strong>Mysql</strong>, chamado &quot;basedatos&quot;</li>
+</ul>
+<pre class="hljs"><code><div>services:
+
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 9090:80  
+    environment:
+      WORDPRESS_DB_HOST: basedatos
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: renaido
+      WORDPRESS_DB_NAME: bdwordpress
+    depends_on:
+      - basedatos
+
+  basedatos:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: bdwordpress
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: renaido
+      MYSQL_ROOT_PASSWORD: Abc123.
+
+</div></code></pre>
+<p>Do contedor wordpress:</p>
+<ul>
+<li><strong>image</strong>: indica que imaxen ten que descargar de Docker Hub, neste caso wordpress.</li>
+<li><strong>restart</strong>: que se reinicie o servizo sempre.</li>
+<li><strong>ports</strong>: neste caso emprega o porto 80 do docker, e o 9090 do equipo host, desde onde se chama ao docker.</li>
+<li><strong>environment</strong>: son variables de entorno que necesita o servizo para funcionar. Destacar:
+<ul>
+<li>WORDPRESS_DB_HOST: hai que poñer o nome do contedor que da o servizo, neste caso <strong>&quot;basedatos</strong>&quot;, o nome do host que ten a base de datos.</li>
+<li>WORDPRESS_DB_NAME: aquí hai que indicar o nome da base de datos dentro de mysql, que vai empregar wordpresss, neste caso <strong>&quot;bdwordpress&quot;</strong>.</li>
+</ul>
+</li>
+<li><strong>depends_on</strong>: indicámoslle que para que se execute este contedor, antes debe estar iniciado o que poñemos neste apartado de depends_on, neste caso &quot;basedatos&quot;</li>
+</ul>
+<p>Do contedor basedatos:</p>
+<ul>
+<li>image: instancia a imaxe de mysql.</li>
+<li><strong>restart</strong>: sempre.</li>
+<li>*<em>environment</em>: indica as variables de entorno:
+<ul>
+<li>MYSQL_DATABASE: poñemos o nome da base de datos que emprega wordpress dentro do servidor mysql, neste caso <em>&quot;dbwordpress&quot;</em>.</li>
+<li>MYSQL_USER: indica o usuario para acceder á base de datos de wordpress, &quot;bdwordpress&quot;</li>
+<li>MYSQL_PASSWORD: o contrasinal do usuario da &quot;bdwordpress&quot;.</li>
+<li>MYSQL_ROOT_PASSWORD: indicamos o contrasinal do root do servizo de mysql.</li>
+</ul>
+</li>
+</ul>
+<h3 id="levantando-os-servizos-de-wordpress-e-mysql-con-docker-compose">Levantando os servizos de wordpress e mysql con docker Compose</h3>
+<p>Dentro da carpeta do proxecto, execútase<code>docker compose up -d</code>, poñemos o <em>-d</em> para facelo en background.
+<img src="images/dockercomposeupwp.png" alt=""></p>
+<p>Vése que comeza a cargar o docker de <em>basedatos</em>, xa que no <em>depends_on</em> lle indicamos que o servizo de wordpress dependía de <em>basedatos</em>.</p>
+<p>Unha vez que acaba de crear os dous contedores, entramos en <a href="http://localhost:9090">http://localhost:9090</a>, e podemos ver que inicia a instalación de wordpress:
+<img src="images/wordpress.png" alt="Instalación wordpress"></p>
+<p>Finalmente aparece finalizada a instalación de wordpress:
+<img src="images/wpinstalado.png" alt="Instalación wp finalizada" title="Wordpress instalado">.</p>
+<p>Agora ao acceder a <a href="http://localhost:9090">http://localhost:9090</a> aparece o xestor de configuración de wordpress:</p>
+<p><img src="images/wpfrontpage.png" alt="Xestor configuración wordpress"></p>
+<p>Se executamos <code>sudo docker compose ps</code> vemos os contedores que se están executando:
+<img src="images/contedoresexecutados.png" alt="Contenedores executándose" title="Contenedores executándose"></p>
+<h3 id="configuraci%C3%B3n-dun-volume">Configuración dun volume</h3>
+<p>Creamos un espazo persistente, desde o que poder acceder desde a máquina host, á carpeta de configuración de wordpress, neste caso <strong>/var/www/html</strong>.</p>
+<p>Podemos montar:</p>
+<ul>
+<li>
+<p><strong>docker volumes</strong>: asigna automáticamente un nome aos volumes, xeralmente é un nome moi longo, polo que non se recomenda esta opción. Logo móntaos en <strong>/var/lib/docker/volumes/</strong></p>
+</li>
+<li>
+<p><strong>named volumes</strong>: onde lle damos nós un nome ao volume. Logo dentro da máquina host, se accedemos a <em>/var/lib/docker/volumes/</em> podemos ver os volumenes compartidos cos contenedores.</p>
+</li>
+<li>
+<p><strong>bind volume</strong>: indicamos no directorio da máquina real no que queremos que comparta o volume, por exemplo: <em>/home/usuario/compartido</em>
+Se facemos un <code>docker inspect nomecontedor</code>, pódese ver a configuración, e no mount, aparece que é de tipo <em>bind</em>.
+Engadimos o volume para wordpress:</p>
+</li>
+</ul>
+<pre class="hljs"><code><div>volumes:
+
+  -/home/usuario/volumenes:/var/www/html
+
+</div></code></pre>
+<p>Indica que indexamos a nosa carpeta de host: <em><strong>/home/usuario/volumenes</strong></em> coa carpeta do servidor <em><strong>/var/www/html</strong></em></p>
+<pre class="hljs"><code><div>services:
+
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 9090:80
+    environment:
+      WORDPRESS_DB_HOST: basedatos
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: renaido
+      WORDPRESS_DB_NAME: bdwordpress
+    depends_on:
+      - basedatos
+    volumes:
+      -/home/usuario/volumenes:/var/www/html
+
+  basedatos:
+    image: mysql
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: bdwordpress
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: renaido
+      MYSQL_ROOT_PASSWORD: Abc123.
+
+</div></code></pre>
+<p>Vemos que dentro da carpeta <em><strong>/home/usuario/volumenes</strong></em> teño acceso á carpeta de wordpress /var/www/html.</p>
+<p><img src="images/volumes.png" alt=""></p>
+<h4 id="ver-lista-de-vol%C3%BAmenes">Ver lista de volúmenes</h4>
+<p>Se queremos comprobar os volúmenes compartidos con docker facemos <code>docker volume ls</code>.</p>
+<p><img src="images/dockervolumels.png" alt="Docker volume ls" title="Docker volume ls"></p>
+<h4 id="borrar-todos-os-vol%C3%BAmenes">Borrar todos os volúmenes</h4>
+<p>Se quero borrar todos os volumes na máquina host <code>docker volume prune</code></p>
+<p><img src="images/dockervolumeprune.png" alt="Docker volume prune" title="Docker volume prune"></p>
+
+</body>
+</html>
