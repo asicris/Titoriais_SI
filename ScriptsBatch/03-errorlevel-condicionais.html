@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>03-errorlevel-condicionais.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h2 id="variables">Variables</h2>
+<p>Para definir variables empregamos o comando <strong>set</strong>
+Logo para chamalas dentro do script empréganse os símbolos de <strong>%%</strong>, de forma <strong>%nomevariable%</strong>.</p>
+<pre class="hljs"><code><div>@<span class="hljs-built_in">echo</span> off
+<span class="hljs-comment">
+REM Copia un directorio completo e todos os seus subdirectorios</span>
+
+<span class="hljs-built_in">set</span> orixen=C:\Users\Administrador\scripts\outrosscripts
+
+<span class="hljs-built_in">set</span> destino=C:\users\administrador\scripts\BACKUP
+
+<span class="hljs-built_in">echo</span> Creamos o directorio destino
+<span class="hljs-built_in">mkdir</span> <span class="hljs-variable">%destino%</span>
+
+<span class="hljs-built_in">echo</span> Copiamos todo o contido de outrosscripts en Backup <span class="hljs-built_in">con</span> <span class="hljs-built_in">xcopy</span> /E
+<span class="hljs-built_in">xcopy</span> /E <span class="hljs-variable">%orixen%</span> <span class="hljs-variable">%destino%</span>
+
+<span class="hljs-built_in">echo</span> Mostramos o contido de Backup
+<span class="hljs-built_in">tree</span> /F <span class="hljs-variable">%destino%</span>
+<span class="hljs-built_in">echo</span> FIN
+</div></code></pre>
+<p>Neste script, defínense dúas variables:</p>
+<p><code>set orixen= ruta</code></p>
+<p><code>set destino= ruta</code></p>
+<p>Logo para chamalas dentro do script emprégase <code>%orixen%</code> <code>%destino%</code>.</p>
+<p>O que fai o script, é crear a carpeta de destino empregando unha <em>ruta absoluta</em>.
+<code>mkdir %destino%</code></p>
+<p>Facer unha copia completa do directorio &quot;outrosscripts&quot; áo directorio &quot;BACKUP&quot; recén creado.</p>
+<blockquote>
+<p><strong>/E</strong> emprégase /E porque  Copia directorios e subdirectorios, incluíndo os que están vacíos.</p>
+</blockquote>
+<p><code>xcopy /E %orixen% %destino%</code></p>
+<p>E finalmente para comprobar que se copiou todo, amósase a árbore do subdirectorio BACKUP.</p>
+<p><code>tree /F %destino%</code></p>
+<p>Vídeo explicativo co proceso: <em><strong>preme no vídeo</strong></em>
+<a href="https://youtu.be/gubSSpOnmmI"><img src="imagenes/06-variablesxcopy.png" alt="Variables en batch e xcopy"></a></p>
+<h2 id="variable-errorlevel-e-estrutura-condicional-if-else">Variable %ERRORLEVEL% e estrutura condicional IF-ELSE</h2>
+<p><strong>%ERRORLEVEL%</strong> O valor de %errorlevel% é un número enteiro que indica se o comando anterior executouse correctamente ou se ocorreu algún erro.</p>
+<ul>
+<li>Se %errorlevel% é <strong>igual a 0</strong>: entón o comando rematou <strong>CORRECTAMENTE</strong></li>
+<li>Se %errorlevel% é <strong>distinto de 0</strong>: entón <strong>prodúxose un ERRO</strong></li>
+</ul>
+<pre class="hljs"><code><div>@<span class="hljs-built_in">echo</span> off
+<span class="hljs-comment">
+REM Crea un directorio. Se o directorio destino xa existe, indicará por pantalla que xa existe.</span>
+<span class="hljs-built_in">set</span> destino=C:\users\administrador\scripts\BACKUP
+
+<span class="hljs-built_in">mkdir</span> <span class="hljs-variable">%destino%</span> <span class="hljs-number">2</span>&gt; <span class="hljs-built_in">nul</span>
+<span class="hljs-keyword">if</span> <span class="hljs-variable">%ERRORLEVEL%</span> <span class="hljs-keyword">equ</span> <span class="hljs-number">0</span> (
+    <span class="hljs-built_in">echo</span> O directorio foi creado CORRECTAMENTE.
+) <span class="hljs-keyword">else</span> (
+<span class="hljs-comment">   REM neste caso o saída de errorleve é diferente a 1. Prodúxose erro.</span>
+    <span class="hljs-built_in">echo</span> O directorio NON SE creou porque XA EXISTE.
+
+)
+
+<span class="hljs-built_in">echo</span> FIN
+</div></code></pre>
+<ul>
+<li><strong>%errorlevel%% equ 0</strong> comproba se a saída é <strong>igual</strong> a 0, e polo tanto EXITOSA.</li>
+<li><strong>%errorlevel% neq 0%%</strong> comproba se %errorlevel% é <strong>distinto</strong> de 0.</li>
+</ul>
+<p>O que fai este script, é tentar crear a carpeta BACKUP, na ruta especificada va variable <em>%destino%</em>. No caso de que se produza un erro, non se amosará por pantalla porque o redirixe con <strong>2&gt;</strong> ao lixo.</p>
+<p>Logo coa estrutura condicional <strong>IF-ELSE</strong>, comproba se a saísa foi exitosa, é dicir, se <strong>%errorlevel%% equ 0</strong> é igual a 0, entón indica por pantalla que <em>&quot;O directorio foi creado CORRECTAMENTE&quot;</em>, en caso de qeu <strong>%errorlevel%% sexa distinto de 0</strong> entra pola rama do <strong>else</strong> e indica que <em>&quot;O directorio xa existe&quot;</em>.</p>
+<p>Vídeo explicativo do proceso de execución deste script:</p>
+<p><a href="https://youtu.be/XtPuwor_g2A"><img src="imagenes/07-errorlevel.png" alt="Errorlevel"></a></p>
+<h2 id="comprobar-si-existe-un-directorio-ou-un-ficheiro----if-exist">Comprobar si existe un directorio ou un ficheiro -- IF EXIST</h2>
+<p>Para comprobar si existe un directorio ou un arquivo empregamos a expresión <strong>if exist</strong></p>
+<p>Se queremos comprobar que NON EXISTE poríamos <strong>if not exist</strong></p>
+<pre class="hljs"><code><div>@<span class="hljs-built_in">echo</span> off
+<span class="hljs-built_in">set</span> directorio=BACKUP  
+<span class="hljs-built_in">set</span> arquivo=ola.txt
+<span class="hljs-comment">
+REM Verifica se existe o directorio</span>
+<span class="hljs-keyword">if</span> <span class="hljs-keyword">exist</span> "<span class="hljs-variable">%directorio%</span>" (
+    <span class="hljs-built_in">echo</span> El directorio <span class="hljs-variable">%directorio%</span> XA existe.
+) <span class="hljs-keyword">else</span> (
+    <span class="hljs-built_in">mkdir</span> <span class="hljs-variable">%directorio%</span>
+    <span class="hljs-built_in">echo</span> Creouse o directorio <span class="hljs-variable">%directorio%</span>.
+)
+<span class="hljs-comment">
+REM Verifica se existe o arquivo</span>
+<span class="hljs-keyword">if</span> <span class="hljs-keyword">exist</span> "<span class="hljs-variable">%archivo%</span>" (
+    <span class="hljs-built_in">echo</span> El archivo <span class="hljs-variable">%archivo%</span> XA existe.
+) <span class="hljs-keyword">else</span> (
+    <span class="hljs-built_in">echo</span> ""&gt;<span class="hljs-variable">%arquivo%</span>
+    <span class="hljs-built_in">echo</span> Creado o arquivo <span class="hljs-variable">%arquivo%</span>.
+)
+
+<span class="hljs-built_in">echo</span> FIN <span class="hljs-keyword">DO</span> PROGRAMA
+</div></code></pre>
+<h2 id="no-seguinte-v%C3%ADdeo-pode-verse-a-execuci%C3%B3n-deste-scriptif-exist">No seguinte vídeo pode verse a execución deste script:
+<a href="https://youtu.be/hNVExx3zI_M"><img src="imagenes/08-ifexistdirectorio.png" alt="If exist"></a></h2>
+<h1 id="exercicios">Exercicios</h1>
+<p>Entra na carpeta home do teu usuario. (c:\users\nomedoteuusuario)</p>
+<h3 id="exercicio-1">Exercicio 1</h3>
+<p>Facer un script que defina as variables:</p>
+<ul>
+<li>nome: que conteña o teu nome completo</li>
+<li>apelidos: que conteña os teus apelidos</li>
+</ul>
+<p>Debe amosar por pantalla o valor das variables, é dicir o teu nome e apelidos, xunto coa data nunha frase como a que se amosa no exemplo de saída:</p>
+<p>EXEMPLO DE SAÍDA:</p>
+<pre class="hljs"><code><div>C:\Users\Administrador\scripts&gt;exercicio1.bat
+Benvida á clase de hoxe 22/02/2024 : Cristina Puga Barreiros
+</div></code></pre>
+<h3 id="exercicio-2">Exercicio 2</h3>
+<p>Fai un script que cree unha carpeta que se chama BACKUPAPUNTES. Debe de comprobar, se xa existe, debe amosar unha mensaxe que poña que &quot;O directorio BACKUPAPUNTES XA EXISTE&quot; e senón existe debe creala e indicar por pantalla &quot;Creado o directorio BACKUPAPUNTES&quot;</p>
+<h3 id="exercicio-3">Exercicio 3</h3>
+<ol>
+<li>Descarga do libro documentación esta páxina en formato PDF e gárdaa en DIURNO/COMPARTIDO-VIRTUAL/Apuntes.</li>
+<li>Comparte esta carpeta coa máquina virtual de Windows que estás a emprega, e que se monte co nome apuntes.</li>
+</ol>
+<p>Crea un script que faga unha copia de todo o contido da carpeta compartida coa máquina á carpeta c:\users&lt;nomedoteusuario&gt;\BACKUPAPUNTES.</p>
+<p>Para facelo debes de definir as variables orixen e destino.</p>
+<ul>
+<li>Debes comprobar se existe o <strong>destino</strong>, se non existe debes crealo.</li>
+<li>Debes comprobar se existe o <strong>orixen</strong>, se non existe debes de sacar unha mensaxe que diga: <em>&quot; NON EXISTE O ORIXEN NON SE PODE COPIAR.&quot;</em> Debe de solicitar premer nun botón e saír do programa con (exit).</li>
+</ul>
+<p>Captura á saída da execución do comando. Se da erro, debe crear un ficheiro log, chamado <strong>&quot;backupapuntes.log&quot;</strong>.</p>
+<h3 id="exercicio-4">Exercicio 4</h3>
+<p>Fai un script que se chame instalacionchoco.</p>
+<p>Debe de instalar con Chocolatey o FIREFOX.
+Se a instalación remata de forma exitosa, debe amosar o aviso &quot;INSTALOUSE CORRECTAMENTE FIREFOX&quot;.
+No caso de que se produza un erro, debe de aparecer soamente por pantalla &quot; A INSTALACIÓN NON SE PUIDO REALIZAR&quot;.</p>
+<p>Se se produxo un erro, debe de reflexalo no ficheiro <strong>chocoerror.log</strong>.</p>
+
+</body>
+</html>
