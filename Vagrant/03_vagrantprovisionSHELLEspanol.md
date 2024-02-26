@@ -1,0 +1,66 @@
+## Vagrant -  config.vm.provision "shell", inline: <<-SHELL
+
+Unha das vantaxes que ten Vagrant é poder aprovisionar servidores.
+
+Neste caso imos facer que o noso servidor anterior, en vez de que estea en Inglés, veña xa configurado co idioma ESPAÑOL.
+
+Ficheiro VagrantFile no Proxecto2_espanhol
+```ruby
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/focal64"
+  config.vm.hostname='Ubu2004FOCAL'
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "2048"
+    vb.cpus = 2
+    vb.name='Ubuntu20.04-FOCAL-ES'
+    #vb.gui = true
+    #vb.linked_clone = true
+    vb.check_guest_additions = false
+  end
+  #Comparte unha carpeta .data do host no equipo virtual /home/vagrant/datoscompartidos
+  config.vm.synced_folder ".data", "/home/vagrant/datoscompartidos"
+
+  # Aprovisionamos o idioma español para a máquina e o teclado.
+  config.vm.provision "shell", inline: <<-SHELL
+      echo "Iniciando actualización"
+      apt-get update -y
+
+      echo "Instalando paquetes idioma"
+      apt-get install language-pack-es -y
+      apt-get install language-pack-es-base -y
+
+      echo "Modificando paquetes idioma"
+      echo "LC_ALL=es_ES.UTF_8" >> /etc/default/locale
+      echo "LANGUAGE=es_ES" >> /etc/default/locale
+
+      echo "Modificando locale.gen"
+      echo "es_ES.UTF-8 UTF-8" >> /etc/locale.gen
+      locale-gen
+      echo "Exportando a variable global de idioma"
+      export LANG=es_ES.UTF-8
+
+      #Configurando o teclado en español
+      apt-get install console-data -y
+      apt-get install x11-xkb-utils -y
+      setxkbmap -layout 'es,es' -model pc105
+      
+      #Reinicio do servizo de teclado
+      sudo systemctl restart keyboard-setup.service
+      echo "FIN"
+
+  SHELL
+end
+```
+--- FICHEIRO PARA DESCARGAR: [Vagrantfile](scriptsVagranfiles/provisionSHELLespanol/Vagrantfile)
+
+--- 
+### EXERCICIOS:
+1) Copia o seguinte código e intenta entendelo.
+2) Valida o Vagrantfile antes de executalo.
+3) Levanta a máquina.
+4) Conéctate por entorno gráfico ou por ssh á máquina virtual.
+5) Comproba si funciona o teclado en español.
+6) Executa a orde "locale" e comproba que paquetes de idioma están configurados.

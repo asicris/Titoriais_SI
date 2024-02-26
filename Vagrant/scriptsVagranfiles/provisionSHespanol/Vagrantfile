@@ -1,0 +1,18 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/focal64"
+  config.vm.hostname='Ubu2004FOCAL'
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "2048"
+    vb.cpus = 2
+    vb.name='Ubuntu20.04-FOCAL-ES-provision SH'
+    #vb.gui = true
+    #vb.linked_clone = true
+    vb.check_guest_additions = false
+  end
+  config.vm.synced_folder ".datos", "/home/vagrant/data"
+  config.vm.provision "shell", path: "lenguajees_ES.sh"
+
+end
