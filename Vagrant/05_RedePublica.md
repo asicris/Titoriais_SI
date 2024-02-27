@@ -1,35 +1,38 @@
-### Configuración da rede por defecto NAT
+### Configuración de Rede PÚBLICA- Modo de rede Puente/Bridge
 
-Cando se crea unha máquina con Vagrant, creáse por defecto **unha interface de rede en modo NAT**.
+Para configurar unha rede de tipo **Puente ou Bridge** é dicir que a máquina virtual pase a formar parte da rede física da máquina Host:
 
-Ademais a esta interface de rede, se lle configura unha redirección de portos automáticamente, o **porto ssh** corre na **máquina virtual** no porto **22**, e redireccionase á **máquina host** ao porto **2222**.
+##### public_network con ip por DHCP
+**`config.vm.network "public_network"`**
 
-![Reenvío ssh por defecto](./images/reenviossh.png)
+Se na nosa rede local hai un servidor DHCP, este servidor asígnalle unha IP.
 
-Gracias a esto, podémonos conectar á máquina virtual desde a real coa cadena:
+No meu caso vese que ten:
++ Interface en **modo NAT**: que ao iniciar a máquina colle ip **10.0.2.15**
++ Interface en **modo BRIDGE**: á que lle asigna unha ip o DHCP, neste caso de exemplo, **192.168.0.45**
 
-`ssh vagrant@127.0.0.1 -p 2222`
+![Rede Bridge](./images/publicnetworkconfiginterfaces.png)
 
-### Configuración de Rede Privada - Host Only - Ip Fixa
+Se nos conectamos por ssh á máquina virtual, ou mediante o modo gráfico de VirtualBox, e facemos un `ip a`, podemos ver:
 
-Para configurar unha rede de tipo **Host Only** é dicir entre o host e o equipo virtual soamente, debemos engadir unha liña ao Vagrantfile así:
+![IP a public_network](./images/publicnetworkIPA.png)
 
-`config.vm.network "private_network", ip: "192.168.33.10"`
+##### public_network ip FIXA
 
-+ **ip** podemos indicarlle unha IP concreta, e creará na máquina virtual unha re de Host Only con ese rango de ips. Neste caso crea a subrede: **192.168.33.0**
+Engadiríamos no Vagrantfile unha liña como a que sigue.
 
-![Rede vboxnet1](./images/vboxnet1.png)
+**`config.vm.network "public_network", ip: "192.168.0.66"`**
+> OLLO!! Debemos asignar unha ip que pertenza á rede do host. No meu caso debe ser dentro da rede 192.168.0.0/24.
 
-+ **Máquina host**: Deste xeito á máquina host ou real, terá a IP **192.168.33.1** como se ve na imaxe.
-+ **Máquina virtual**: terá a ip **192.168.33.10**
+Eu asigneille a IP: **192.168.0.66** que pertence á subrede do host, para que poidan ter conectividade.
 
-Así si facemos un ping desde a máquina real á virtual responde:
+Como se pode ver a continuación, ao iniciar á máquina asigna:
+![public_network ip fixa](./images/publicnetworkipfija.png)
 
-![Ping private network](./images/privatenetworkping.png)
++ modo NAT - 10.0.2.15
++ modo Bridge - a IP que lle indicamos no Vagrantfile, neste caso 192.168.0.66.
 
---- ** Ficheiro Vagrantfile con private_network** -- [Vagrantfile](./scriptsVagranfiles/privatenetworkfija/Vagrantfile)
-+ Crear un directorio **web** dentro da carpeta virtual onde se execute Vagranfile.
-Esta máquina instala un servidor Apache tamén, ao que se pode acceder desde a IP do equipo virtual.
+Logo vése na imaxe da esquerda, que ao facer ping desde o Host ao equipo virtual, hai conectividade.
 
 ---
 ### Exercicios
@@ -41,8 +44,6 @@ Esta máquina instala un servidor Apache tamén, ao que se pode acceder desde a 
     + Fai un ping á máquina que está correndo que debería ter a ip 192.168.33.10. E indica se responde ou non. 
     
     Captura unha pantalla destas dúas evidencias.
-
-1) Vai ao navegador Web e pon a ip 192.168.33.10 nel. Funciona o servidor Web?
 
 1) Na **pantalla de configuración de VIRTUALBOX** comproba:
     + As Interfaces de rede coas que conta a máquina e o tipo que teñen. Indícao ou captura unha pantalla.
