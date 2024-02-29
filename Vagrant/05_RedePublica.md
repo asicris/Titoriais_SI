@@ -34,6 +34,10 @@ Como se pode ver a continuación, ao iniciar á máquina asigna:
 
 Logo vése na imaxe da esquerda, que ao facer ping desde o Host ao equipo virtual, hai conectividade.
 
+
+
+![Exemplo Brigde](images/bridgeesquemahttp.png)
+
 ---
 ### Exercicios
 

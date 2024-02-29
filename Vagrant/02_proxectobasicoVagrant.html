@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>02_proxectobasicoVagrant.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="introduci%C3%B3n-a-vagrant">Introdución a vagrant</h1>
+<h2 id="instalaci%C3%B3n">Instalación</h2>
+<p>Accede á paxina de documentación do proxecto (https://developer.hashicorp.com/vagrant/downloads) e crea un titorial básico de como instalaches vagrant no teu sistema operativo.</p>
+<hr>
+<h2 id="primeiro-proxecto">Primeiro proxecto</h2>
+<p>Crea un directorio <em><strong>Vagrant</strong></em> dentro do cartafol do teu usuario, ou se estás na aula dentro de <strong>/media/DIURNO/Vagrant</strong></p>
+<ol>
+<li>Creamos dentro a carpeta <em><strong>Proxecto1</strong></em>.</li>
+</ol>
+<pre class="hljs"><code><div>mkdir Vagrant/Proxecto1
+</div></code></pre>
+<ol>
+<li>Abrimos a terminal de comandos dentro de Vagrant/Proxecto1 e escribimos <em><strong>vagrant init</strong></em>:</li>
+</ol>
+<pre class="hljs"><code><div>vagrant init --minimal
+</div></code></pre>
+<ol>
+<li>Vemos que dentro da carpeta do proxecto nos aparece un ficheiro chamado <strong>Vagrantfile</strong>
+<img src="images/vagrantfile1.png" alt="Ficheiro VagrantFile"></li>
+<li>Se o abrimos ten a estrutura do ficheiro de configuración de Vagrant.</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-comment"># -*- mode: ruby -*-</span>
+<span class="hljs-comment"># vi: set ft=ruby :</span>
+Vagrant.configure(<span class="hljs-string">"2"</span>) <span class="hljs-keyword">do</span> <span class="hljs-params">|config|</span>
+  config.vm.box = <span class="hljs-string">"base"</span>
+<span class="hljs-keyword">end</span>
+</div></code></pre>
+<blockquote>
+<p>config.vm.box = 'nomebox ' indica o nome do Box que queremos cargar.</p>
+</blockquote>
+<ol>
+<li>Imos configurar o Box, e cargar o sistema operativo Ubuntu Server 22.04, que imos descargar de: https://app.vagrantup.com/. Editamos o VagrantFile e poñemos o seguinte, fíxate que toda a configuración se mete dentro de <strong>Vagrant.configure(&quot;2&quot;) do |config|</strong> e a palabra <strong>end</strong>:</li>
+</ol>
+<pre class="hljs"><code><div>Vagrant.configure(<span class="hljs-string">"2"</span>) <span class="hljs-keyword">do</span> <span class="hljs-params">|config|</span>
+  config.vm.box = <span class="hljs-string">"techchad2022/ubuntu2204"</span>
+<span class="hljs-keyword">end</span>
+</div></code></pre>
+<ol>
+<li>Hai que validar o ficheiro de configuración que acabamos de crear, para elo empregamos <em><strong>vagrant validate</strong></em></li>
+</ol>
+<pre class="hljs"><code><div>cris@CRISPC:~/Vagrant/Proxecto1$ vagrant validate
+Vagrantfile validated successfully.
+</div></code></pre>
+<ol>
+<li>Se está ben validado, agora iniciamos a máquina, como non temos o box en local, descargarao do repositorio de vagrant. <em><strong>vagrant up</strong></em></li>
+</ol>
+<pre class="hljs"><code><div>cris@CRISPC:~/Vagrant/Proxecto1$ vagrant up
+</div></code></pre>
+<p><img src="images/vagrantup.png" alt="Cargando box"></p>
+<pre class="hljs"><code><div>Bringing machine 'default' up with 'virtualbox' provider...
+==&gt; default: Box 'techchad2022/ubuntu2204' could not be found. Attempting to find and install...
+    default: Box Provider: virtualbox
+    default: Box Version: &gt;= 0
+==&gt; default: Loading metadata for box 'techchad2022/ubuntu2204'
+    default: URL: https://vagrantcloud.com/techchad2022/ubuntu2204
+==&gt; default: Adding box 'techchad2022/ubuntu2204' (v0.2) for provider: virtualbox
+    default: Downloading: https://vagrantcloud.com/techchad2022/boxes/ubuntu2204/versions/0.2/providers/virtualbox.box
+    default: Calculating and comparing box checksum...
+==&gt; default: Successfully added box 'techchad2022/ubuntu2204' (v0.2) for 'virtualbox'!
+==&gt; default: Importing base box 'techchad2022/ubuntu2204'...
+==&gt; default: Generating MAC address for NAT networking...
+==&gt; default: Checking if box 'techchad2022/ubuntu2204' version '0.2' is up to date...
+==&gt; default: Setting the name of the VM: Proxecto1_default_1677524011358_5401
+==&gt; default: Clearing any previously set network interfaces...
+==&gt; default: Preparing network interfaces based on configuration...
+    default: Adapter 1: nat
+==&gt; default: Forwarding ports...
+    default: 22 (guest) =&gt; 2222 (host) (adapter 1)
+==&gt; default: Running 'pre-boot' VM customizations...
+==&gt; default: Booting VM...
+==&gt; default: Waiting for machine to boot. This may take a few minutes...
+    default: SSH address: 127.0.0.1:2222
+    default: SSH username: vagrant
+    default: SSH auth method: private key
+    default:
+    default: Vagrant insecure key detected. Vagrant will automatically replace
+    default: this with a newly generated keypair for better security.
+    default:
+    default: Inserting generated public key within guest...
+    default: Removing insecure key from the guest if it's present...
+    default: Key inserted! Disconnecting and reconnecting using new SSH key...
+==&gt; default: Machine booted and ready!
+==&gt; default: Checking for guest additions in VM...
+    default: The guest additions on this VM do not match the installed version of
+    default: VirtualBox! In most cases this is fine, but in rare cases it can
+    default: prevent things such as shared folders from working properly. If you see
+    default: shared folder errors, please make sure the guest additions within the
+    default: virtual machine match the version of VirtualBox you have installed on
+    default: your host and reload your VM.
+    default:
+    default: Guest Additions Version: 6.0.0 r127566
+    default: VirtualBox Version: 7.0
+</div></code></pre>
+<p>Vese en VirtualBox que se creou a máquina:</p>
+<p><img src="images/maquinacreada.png" alt="Maquina creada en VirtualBox"></p>
+<p>Na saída, cando chamamos a &quot;vagrant initW, vemos:</p>
+<ul>
+<li>Que a primeira vez que se instancia a máquina, busca BOX no disco local, e ao non atopalo, descargao de Internet.</li>
+</ul>
+<pre class="hljs"><code><div>default: Box techchad2022/ubuntu2204 could not be found. Attempting to find and install...
+</div></code></pre>
+<ul>
+<li>Por efecto, crea unha interface NAT en virtualbox</li>
+</ul>
+<pre class="hljs"><code><div>==&gt; default: Generating MAC address for NAT networking...
+</div></code></pre>
+<ul>
+<li>Que redirecciona o <strong>porto 22</strong> do equipo virtual, correspondente ao <strong>SSH</strong> ao porto <strong>2222</strong> do equipo real. Isto faise para permitir o acceso por ssh desde o equipo anfitrión, e tamén se pode ver o usuario que se emprega co ssh que é <strong>vagrant</strong> :</li>
+</ul>
+<pre class="hljs"><code><div> default: 22 (guest) =&gt; 2222 (host) (adapter 1)
+ ...
+ default: SSH username: vagrant
+ default: SSH auth method: private key
+</div></code></pre>
+<p>E pode verse na máquina virtual a configuración:
+<img src="images/reenvio.png" alt="Reenvío de portos"></p>
+<ul>
+<li>
+<p>Configúrase o acceso por ssh á máquina virtual usando claves dixitais (sen contrasinal).</p>
+</li>
+<li>
+<p>Finalmente indica que as Guest Additions non se corresponden coa versión de VirtualBox, así que deberíamos instalalar no servidor.
+No apartado <a href="#Instalar-Guest-Additions">Instalar Guest Additions</a></p>
+</li>
+<li>
+<p>A máquina execútase en segundo plano, é dicir en modo headless.</p>
+</li>
+</ul>
+<h3 id="comandos-para-parar-arrancar-e-destru%C3%ADr-a-m%C3%A1quina">Comandos para Parar, arrancar e destruír a máquina</h3>
+<p><code>vagrant status</code>: Para ver o estado da máquina.</p>
+<p><img src="images/vagrantstatus.png" alt="Vagrant status"></p>
+<p><code>vagrant halt</code> : Parar a máquina virtual</p>
+<ul>
+<li>Este comando apaga a  máquina virtual.</li>
+</ul>
+<p><code>vagrant up</code>: Arrancar de novo a máquina virtual</p>
+<ul>
+<li>Este comando arranca de novo a máquina virtual que xa se iniciou, a lo menos unha vez con vagrant init.</li>
+</ul>
+<p><code>vagrant destroy -f</code>:  Destruir a <em>máquina virtual</em> e a carpeta <em>.vagrant</em>.</p>
+<ul>
+<li>Este comando destrúe a máquina virtual e directorio .vagrant que se crea dentro da carpeta do proxecto.</li>
+<li>Ademáis, instálase un directorio, xeralmente dentro da carpeta do usuario <strong>/home/usuario/.vagrant.d</strong>, o directorio oculto <strong>.vagrant.d</strong> onde se atopan as imaxes dos boxes, e que é convinte borrar se non necesitamos xa a máquina.</li>
+</ul>
+<p><code>vagrant ssh</code> : Permite conectarse por <strong>ssh</strong> coa máquina.</p>
+<p>Tamén podería empregarse <code>ssh vagrant@127.0.0.1 -p 2222</code></p>
+<h3 id="instalar-guest-additionsno-caso-de-que-difiran-da-versi%C3%B3n-de-virtualbox-instalada-no-equipo-local">Instalar Guest Additions,no caso de que difiran da versión de VirtualBox instalada no equipo local</h3>
+<ul>
+<li>Executamos a máquina desde virtualBox.</li>
+<li>Insertamos o CD das Guest Additions.</li>
+<li>Antes de nada actualizamos os repositorios do SO</li>
+</ul>
+<pre class="hljs"><code><div>sudo apt-get update
+</div></code></pre>
+<ul>
+<li>Montamos o cd e executamos o instalador das Guest Additions &quot;VBoxLinuxAdditions.run&quot;</li>
+</ul>
+<pre class="hljs"><code><div>mkdir /home/vagrant/<span class="hljs-built_in">cd</span>
+sudo mount -t iso9660 /dev/sr0 /home/vagrant/<span class="hljs-built_in">cd</span>
+<span class="hljs-built_in">cd</span> /home/vagrant/<span class="hljs-built_in">cd</span>
+sudo ./VBoxLinuxAdditions.run
+</div></code></pre>
+<p>Si durante a instlación nos pide instalar algún paquete para poder finalizar a instalación das Guest Additions, facémolo.</p>
+<h3 id="conectarse-por-ssh-coa-m%C3%A1quina">Conectarse por ssh coa máquina</h3>
+<ol>
+<li>Levantamos a máquina virtual, sempre dentro do entorno virtual que queramos para o proxecto, neste caso /media/DIURNO/vagrant/proxecto1 <code>vagrant up</code></li>
+<li>Executamos dentro do entorno virtual, do directorio do noso <strong>Proxecto1</strong> <code>vagrant ssh</code>
+<img src="/images/vagrantssh.png" alt="Acceso ssh a máquina vagrant"><br>
+Vemos que xa estamos dentro da máquina que acabamos de crear, e que o noso usuario por defecto é vagrant.</li>
+<li>Podemos consultar o sistema operativo que está correndo empregando o comando <code>lsb_release -a</code>.
+<img src="/images/lsbrelease.png" alt="Sistema operativo da máquina"></li>
+</ol>
+<h3 id="carpeta-creada-dentro-da-carpeta-do-proxecto">Carpeta creada dentro da carpeta do proxecto</h3>
+<p>Se miramos dentro da carpeta do proxecto, existe unha carpeta <em><strong>.vagrant</strong></em> onde se van metendo as configuracións da máquina.</p>
+<p><img src="/images/carpetavagrant.png" alt="Carpeta .vagrant"></p>
+<h3 id="destru%C3%ADr-e-borrar-unha-m%C3%A1quina-que-xa-non-necesitamos">Destruír e borrar unha máquina que xa non necesitamos</h3>
+<ol>
+<li>Acceder dentro da carpeta do proxecto, neste caso Proxecto1.</li>
+<li>Facer <code>vagrant destroy -f</code>
+Esto destrúe a <em>máquina virtual</em> e a carpeta <em>.vagrant</em>.</li>
+<li>Acceder á carpeta oculta <strong>.vagrant.d</strong> e eliminar o <strong>box</strong> da máquina que xa non queremos.
+Neste caso, imos á /home/nomeusuario/.vagrant.d
+<img src="/images/vagrantd.png" alt=".vagrant.d"></li>
+<li>Accedemos á carpeta <strong>boxes</strong>
+<img src="/images/box.png" alt="Carpeta boxes"><br>
+Vemos que está o box da máquina que acabamos de crear.
+Miramos canto ocupa, e vemos que ocupa 1.7GB:
+<img src="/images/boxocupa.png" alt="Ocupa box"></li>
+<li>Por último borramos o box:
+<code>rm techchad2022-VAGRANTSLASH-ubuntu2204/</code></li>
+</ol>
+<h3 id="cambiar-par%C3%A1metros-de-configuraci%C3%B3n-no-vagrantfile">Cambiar parámetros de configuración no Vagrantfile.</h3>
+<p>Para cambiar determinados parámetros de configuración no vagrantfile, facemos:</p>
+<pre class="hljs"><code><div>Vagrant.configure(<span class="hljs-string">"2"</span>) <span class="hljs-keyword">do</span> <span class="hljs-params">|config|</span>
+  config.vm.box = <span class="hljs-string">"techchad2022/ubuntu2204"</span>
+  config.vm.hostname=<span class="hljs-string">'Ubuntu2204Cris'</span>
+  config.vm.provider <span class="hljs-string">"virtualbox"</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|vb|</span>
+    vb.memory = <span class="hljs-string">"2048"</span>
+    vb.cpus = <span class="hljs-number">2</span>
+    vb.name=<span class="hljs-string">'Ubuntu22.04-CrisPuga'</span>
+    vb.gui = <span class="hljs-literal">true</span>
+    <span class="hljs-keyword">end</span>
+  config.vm.synced_folder <span class="hljs-string">".data"</span>, <span class="hljs-string">"/home/vagrant/data"</span>
+<span class="hljs-keyword">end</span>
+</div></code></pre>
+<ul>
+<li>
+<p>Nome do <strong>hostname</strong> cando a máquina se está a executar.
+<img src="images/confighostname.png" alt="hostname"></p>
+</li>
+<li>
+<p>Crear unha <strong>carpeta compartida</strong> entre a máquina Host e a máquina virtual Vagrant, engadimos a seguinte liña no ficheiro vagrantfile.
+<code>config.vm.synced_folder &quot;./carpetadentroEntornoProxecto&quot;, &quot;/home/vagrant/micarpeta&quot;</code>
+Para facer isto, dentro da máquina host, debemos crear unha carpeta dentro do Proxecto.
+<code>mkdir ./data</code>
+E si levantamos a máquina, na seguinte imaxe podemos ver, cómo o que se crea en /home/vagrant/micarpeta, se ve na carpeta do proxecto .data/ e viceversa.
+<img src="images/carpetacompartida.png" alt="Carpeta compartida"></p>
+</li>
+<li>
+<p>Características da máquina en VirtualBox <strong>config.vm.provider &quot;virtualbox&quot; do |vb|</strong> dentro deste parámetro e ata que aparece <strong>end</strong></p>
+<ul>
+<li>Memoria da máquina, <strong>vb.memory</strong>, neste caso é 2048.</li>
+<li>Número de procesadores <strong>vb.cpus</strong>, neste caso 2.</li>
+<li>Nome da máquina virtual no panel de VirtualBox <strong>vb.name</strong>, neste caso Ubuntu22.04-CrisPuga</li>
+<li>Que a máquina, non se execute en segundo plano, senón que arranque a interface gráfica ao levantala <strong>vb.gui = true</strong>.
+Pódense ver estes parámetros ao levantar a máquina con <code>vagrant up</code>
+<img src="images/configvb.png" alt="Configuración da máquina vb"></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="exercicios">EXERCICIOS</h2>
+<h3 id="exercicio-1">Exercicio 1</h3>
+<p>Copia o <strong>vagrantfile</strong> do proxecto1 a outra carpeta <strong>Proxecto2</strong>, que será un entorno virtual para Vagrant, e cambialle as seguintes configuracións:</p>
+<ul>
+<li>Memoria 2000 MB</li>
+<li>Cpus: 2</li>
+<li>Que lance o entorno gráfico GUI ao levantar a máquina.</li>
+<li>Que comparta unha carpeta <strong>Proxecto2/.datos/</strong> coa máquina virtual /home/vagrant/datos</li>
+</ul>
+<h3 id="exercicio-2">Exercicio 2</h3>
+<p>Borra as máquinas virtuais creadas no Proxecto1 coas opcións de vagrant correctas, eliminando os boxes.</p>
+<h3 id="exercicio-3">Exercicio 3</h3>
+<p>Crea un novo proxecto, chamado <strong>Proxecto3</strong>, e  modifica o Vagrantfile para facer que a distro
+base sexa <strong>centos-7.6</strong>:</p>
+<ul>
+<li>o hostname da máquina debe ser &quot;Centros76TeuNome&quot;</li>
+<li>Memoria 2000 MB</li>
+<li>Cpus: 2</li>
+<li>Nome da máquina no panel de VirtualBox: Centos7.6-Centros76TeuNome</li>
+<li>Comparta unha carpeta que se chame no host .datoscompartidos e na máquina virtual /home/vagrant/datoscompartidos.</li>
+</ul>
+<hr>
+<h4 id="autora">Autora</h4>
+<p>Cristina Puga Barreiros
+<a href="https://twitter.com/crispuga">@crispuga</a></p>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Este obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional</a>.</p>
+
+</body>
+</html>

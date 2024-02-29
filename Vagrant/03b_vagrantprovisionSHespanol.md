@@ -73,3 +73,4 @@ Por suposto, tanto o Vagrantfile como o script lenguajees_ES.sh están no entorn
 + [Vagrantfile ProxectoSHespanol](./scriptsVagranfiles/provisionSHespanol/Vagrantfile)
 + [Script lenguajees_ES.sh](./scriptsVagranfiles/provisionSHespanol/lenguajees_ES.sh)
 
+

@@ -31,6 +31,9 @@ Así si facemos un ping desde a máquina real á virtual responde:
 + Crear un directorio **web** dentro da carpeta virtual onde se execute Vagranfile.
 Esta máquina instala un servidor Apache tamén, ao que se pode acceder desde a IP do equipo virtual.
 
+Un exemplo de esquema de rede do suposto é:
+
+![Esquema de rede private_network en Vagrant](images/PRIVATE-NETWORK.png)
 ---
 ### Exercicios
 
@@ -66,4 +69,5 @@ Esta máquina instala un servidor Apache tamén, ao que se pode acceder desde a 
 
 
 
---- Mais información: https://www.busindre.com/guia_rapida_de_vagrant
+
+
