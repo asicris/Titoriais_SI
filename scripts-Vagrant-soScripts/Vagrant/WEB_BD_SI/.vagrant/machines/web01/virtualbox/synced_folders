@@ -1,0 +1,1 @@
+{"virtualbox":{"/vagrant_www":{"guestpath":"/vagrant_www","hostpath":"/home/cris/Vagrant/WEB_BD_SI/www","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/cris/Vagrant/WEB_BD_SI","disabled":false,"__vagrantfile":true}}}

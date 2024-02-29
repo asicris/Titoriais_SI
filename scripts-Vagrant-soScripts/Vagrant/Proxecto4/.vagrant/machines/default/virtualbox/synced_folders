@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/datoscompartidos":{"guestpath":"/home/vagrant/datoscompartidos","hostpath":"/home/cris/Vagrant/Proxecto4/.datoscompartidos","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/cris/Vagrant/Proxecto4","disabled":false,"__vagrantfile":true}}}

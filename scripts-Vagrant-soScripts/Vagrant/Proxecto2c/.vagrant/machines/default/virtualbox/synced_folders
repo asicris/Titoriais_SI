@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/data":{"guestpath":"/home/vagrant/data","hostpath":"/home/cris/Vagrant/Proxecto2c/.data","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/cris/Vagrant/Proxecto2c","disabled":false,"__vagrantfile":true}}}

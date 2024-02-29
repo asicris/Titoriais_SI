@@ -1,0 +1,19 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.hostname= "ubuntuserverCrisPuga"
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "2048"
+    vb.cpus = 2
+    vb.name="UbuntuServer-CrisPuga"
+  end
+  config.vm.synced_folder ".datoscompartidos", "/home/vagrant/datoscompartidos"   
+  config.vm.network "forwarded_port", guest: 3306, host: 3306
+
+config.vm.provision "shell", inline: <<-SHELL
+     sudo apt-get update
+     sudo apt-get upgrade
+     sudo apt-get install -y mysql-server     
+     sudo apt-get install -f
+  SHELL
+
+end

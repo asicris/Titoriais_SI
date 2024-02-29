@@ -1,0 +1,21 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/focal64"
+  config.vm.hostname='Ubu2004FOCALApache'
+  #Configurar unha rede BRIDGE
+  config.vm.network "public_network", ip: "192.168.0.60"
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "2048"
+    vb.cpus = 2
+    vb.name='ApachePublicNetwork'
+    #vb.gui = true
+    #vb.linked_clone = true
+    vb.check_guest_additions = false
+  end
+  config.vm.synced_folder "web", "/var/www/html"
+  config.vm.provision "shell", path: "lenguajees_ES.sh"
+  config.vm.provision "shell", path: "instalarapache.sh"
+
+end

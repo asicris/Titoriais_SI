@@ -1,0 +1,28 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/centos-7.6"
+  config.vm.hostname= "centos7BD"
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "2048"
+    vb.cpus = 2
+    vb.name='Centos7.6-MariaDB-BD'
+  end
+  config.vm.synced_folder ".datoscompartidos", "/home/vagrant/datoscompartidos"   
+  #config.vm.network "public_network", ip: "192.168.0.241"
+  config.vm.network "forwarded_port", guest: 3306, host: 3306
+
+config.vm.provision "shell", inline: <<-SHELL
+    sudo yum update -y
+    sudo yum install -y mariadb-server
+  sudo systemctl enable mariadb
+  sudo systemctl start mariadb
+    mysql -u root < datoscompartidos/traballadores.sql
+    mysql -u root < datoscompartidos/tendaBD.sql
+    echo "[mysqld]
+    > character_set_server=utf8mb4
+    > collation_server=utf8mb4_unicode_ci
+    > bind-address = 0.0.0.0" | sudo tee -a /etc/my.cnf.d/server.cnf >/dev/null
+    mysql -u root < datoscompartidos/accesosusuarios.sql
+  SHELL
+
+end
+

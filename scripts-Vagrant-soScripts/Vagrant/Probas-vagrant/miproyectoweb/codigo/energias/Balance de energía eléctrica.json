@@ -1,0 +1,237 @@
+{
+  "metadata": {
+    "Contacto": {
+      "value": "icane@cantabria.es",
+      "rdf property": "http://purl.org/dc/terms/publisher"
+    },
+    "Descripción de la serie": {
+      "value": "Balance de energía eléctrica",
+      "rdf property": "http://purl.org/dc/terms/title"
+    },
+    "Categorización": {
+      "value": "Economía -\u003e Industria y energía -\u003e Energía -\u003e Informe del Sistema Eléctrico. Red Eléctrica de España",
+      "rdf property": "http://purl.org/dc/terms/subject"
+    },
+    "Fuente": {
+      "value": "Informe del Sistema Eléctrico. Red Eléctrica de España . Red Eléctrica de España (REE)",
+      "rdf property": "http://purl.org/dc/terms/source"
+    },
+    "Periodicidad": {
+      "value": "Anual",
+      "rdf property": "http://purl.org/dc/terms/accrualPeriodicity"
+    },
+    "Período inicial": {
+      "value": "2006",
+      "rdf property": "http://purl.org/dc/terms/date"
+    },
+    "Último período": {
+      "value": "2020",
+      "rdf property": "http://purl.org/dc/terms/date"
+    },
+    "Ámbito territorial": {
+      "value": "Regional",
+      "rdf property": "http://purl.org/dc/terms/spatial"
+    },
+    "Última actualización": {
+      "value": "12-11-21 12:00 AM",
+      "rdf property": "http://purl.org/dc/terms/modified"
+    },
+    "Notas al pie": {
+      "value": "Balance eléctrico: asignación de unidades de producción según combustible principal.\n\n(1) Otras renovables: incluye biogás, biomasa, hidráulica marina y geotérmica. Los valores de incrementos y año móvil incluyen residuos hasta el 31/12/2014.\n\n(2) Residuos renovables : generación incluida en otras renovables y cogeneración hasta el 31/12/2014.\n\n(3) Turbinación de bombeo puro + estimación de turbinación de bombeo mixto.\n(4) Cogeneración: los valores de incrementos y año móvil incluyen residuos hasta el 31/12/2014.\n\n(5) Residuos no renovables: generación incluida en otras renovables y cogeneración hasta el 31/12/2014.\n\n(6) Valor positivo: saldo importador; valor negativo: saldo exportador. Los valores de incrementos no se calculan cuando los saldos de intercambios tienen distinto signo.\n\n(7) Demanda corregida: corregidos los efectos de temperatura y laboralidad.\n\nLos datos de 2019 son definitivos.\n\n\n\n\n",
+      "rdf property": "http://www.w3.org/2000/01/rdf-schema#comment"
+    },
+    "Unidades": {
+      "value": "Gigavatios hora",
+      "rdf property": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure"
+    }
+  },
+  "headers": [
+    "Balance de energía",
+    "Variables",
+    "Año"
+  ],
+  "data": {
+    "Hidráulica": {
+      "Energía eléctrica": {
+        "2011": 257.0,
+        "2012": 297.0,
+        "2013": 343.0,
+        "2014": 258.0,
+        "2015": 285.0,
+        "2016": 255.0,
+        "2017": 175.0,
+        "2018": 319.0,
+        "2019": 230.0,
+        "2020": 191.0
+      }
+    },
+    "Éolica": {
+      "Energía eléctrica": {
+        "2011": 65.0,
+        "2012": 62.0,
+        "2013": 75.0,
+        "2014": 76.0,
+        "2015": 71.0,
+        "2016": 71.0,
+        "2017": 66.0,
+        "2018": 67.0,
+        "2019": 73.0,
+        "2020": 74.0
+      }
+    },
+    "Solar fotovoltaica": {
+      "Energía eléctrica": {
+        "2011": 2.0,
+        "2012": 2.0,
+        "2013": 2.0,
+        "2014": 2.0,
+        "2015": 2.0,
+        "2016": 2.0,
+        "2017": 2.0,
+        "2018": 2.0,
+        "2019": 2.0,
+        "2020": 2.0
+      }
+    },
+    "Otras renovables (1)": {
+      "Energía eléctrica": {
+        "2011": 14.0,
+        "2012": 17.0,
+        "2013": 82.0,
+        "2014": 86.0,
+        "2015": 85.0,
+        "2016": 77.0,
+        "2017": 83.0,
+        "2018": 82.0,
+        "2019": 73.0,
+        "2020": 79.0
+      }
+    },
+    "Residuos renovables (2)": {
+      "Energía eléctrica": {
+        "2011": null,
+        "2012": null,
+        "2013": null,
+        "2014": null,
+        "2015": 33.0,
+        "2016": 39.0,
+        "2017": 37.0,
+        "2018": 36.0,
+        "2019": 38.0,
+        "2020": 41.0
+      }
+    },
+    "Generación renovable": {
+      "Energía eléctrica": {
+        "2011": 339.0,
+        "2012": 378.0,
+        "2013": 502.0,
+        "2014": 422.0,
+        "2015": 476.0,
+        "2016": 443.0,
+        "2017": 363.0,
+        "2018": 506.0,
+        "2019": 416.0,
+        "2020": 387.0
+      }
+    },
+    "Turbinación bombeo (3)": {
+      "Energía eléctrica": {
+        "2011": 365.0,
+        "2012": 575.0,
+        "2013": 538.0,
+        "2014": 607.0,
+        "2015": 477.0,
+        "2016": 428.0,
+        "2017": 400.0,
+        "2018": 292.0,
+        "2019": 260.0,
+        "2020": 373.0
+      }
+    },
+    "Cogeneración (4)": {
+      "Energía eléctrica": {
+        "2011": 1287.0,
+        "2012": 1669.0,
+        "2013": 1220.0,
+        "2014": 832.0,
+        "2015": 716.0,
+        "2016": 831.0,
+        "2017": 1165.0,
+        "2018": 1380.0,
+        "2019": 1583.0,
+        "2020": 835.0
+      }
+    },
+    "Residuos no renovables(5)": {
+      "Energía eléctrica": {
+        "2011": null,
+        "2012": null,
+        "2013": null,
+        "2014": null,
+        "2015": 33.0,
+        "2016": 39.0,
+        "2017": 37.0,
+        "2018": 36.0,
+        "2019": 38.0,
+        "2020": 41.0
+      }
+    },
+    "Generación no renovable": {
+      "Energía eléctrica": {
+        "2011": 1652.0,
+        "2012": 2245.0,
+        "2013": 1758.0,
+        "2014": 1439.0,
+        "2015": 1227.0,
+        "2016": 1298.0,
+        "2017": 1602.0,
+        "2018": 1708.0,
+        "2019": 1882.0,
+        "2020": 1248.0
+      }
+    },
+    "Consumos en bombeo": {
+      "Energía eléctrica": {
+        "2011": -509.0,
+        "2012": -807.0,
+        "2013": -762.0,
+        "2014": -855.0,
+        "2015": -688.0,
+        "2016": -615.0,
+        "2017": -592.0,
+        "2018": -429.0,
+        "2019": -391.0,
+        "2020": -543.0
+      }
+    },
+    "Saldo de intercambios (6)": {
+      "Energía eléctrica": {
+        "2011": 3010.0,
+        "2012": 2600.0,
+        "2013": 2892.0,
+        "2014": 3320.0,
+        "2015": 3236.0,
+        "2016": 3079.0,
+        "2017": 3000.0,
+        "2018": 2487.0,
+        "2019": 2282.0,
+        "2020": 2814.0
+      }
+    },
+    "Demanda en b.c. (7)": {
+      "Energía eléctrica": {
+        "2011": 4491.0,
+        "2012": 4416.0,
+        "2013": 4389.0,
+        "2014": 4326.0,
+        "2015": 4251.0,
+        "2016": 4206.0,
+        "2017": 4373.0,
+        "2018": 4271.0,
+        "2019": 4188.0,
+        "2020": 3906.0
+      }
+    }
+  }
+}
