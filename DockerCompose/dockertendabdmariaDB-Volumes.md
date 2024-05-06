@@ -1,4 +1,4 @@
-## Volúmenes en Docker (bind volumes) neste caso para facer BD persistente
+## Volúmenes en Docker (volumes) neste caso para facer BD persistente
 
 Para resolver esta circunstancia, o que faremos é compartir unha carpeta co docker. Para elo definimos un **volume**
 
@@ -65,3 +65,8 @@ Vemos que nos conectamos con TablePlus ou WorkBench, coa conexión creada antes,
 ---
 ###### FICHEIROS DE DESCARGA PARA FACER A PRÁCTICA:
 - Ficheiro sql: [tendaBD.sql](scripts/tendaBD.sql)
+
+---
+Realizado por:
+![Realizado por](images/ccbysa.png) 
+2024 - Cristina Puga Barreiros @crispuga

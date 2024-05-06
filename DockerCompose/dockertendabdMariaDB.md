@@ -13,7 +13,7 @@ O obxectivo é instanciar un **DOCKER** que corra **MariaDB**, e no que imos cre
 - Cando pechemos o docker e o borremos, se volvemos lanzalo, xa non conterá a nosa base de datos tendaDB, polo que habería que volver a creala.
 
 ###### Solucións- facer BD Persistente usando VOLUMES:
-Despois de facer a práctica, a solución que se plantexa é crear un **bind volume** que enlace á carpeta na que se gardan os datos de **MariaDB**, que no caso da versión **mariadb:jammy** é **/var/lib/mysql**, deste xeito, no volume gardanse os cambios que se fagan en mariaDB, e a seguinte vez que se instancie o volume, os datos estarán ahí persistentes.
+Despois de facer a práctica, a solución que se plantexa é crear un **volume** que enlace á carpeta na que se gardan os datos de **MariaDB**, que no caso da versión **mariadb:jammy** é **/var/lib/mysql**, deste xeito, no volume gardanse os cambios que se fagan en mariaDB, e a seguinte vez que se instancie o volume, os datos estarán ahí persistentes.
 
 ### Paso 1: Instanciar o Docker/Contenedor de MariaDB e configurar variables de entorno de MariaDB para o acceso
 
