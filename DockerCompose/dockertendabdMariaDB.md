@@ -15,6 +15,16 @@ O obxectivo é instanciar un **DOCKER** que corra **MariaDB**, e no que imos cre
 ###### Solucións- facer BD Persistente usando VOLUMES:
 Despois de facer a práctica, a solución que se plantexa é crear un **volume** que enlace á carpeta na que se gardan os datos de **MariaDB**, que no caso da versión **mariadb:jammy** é **/var/lib/mysql**, deste xeito, no volume gardanse os cambios que se fagan en mariaDB, e a seguinte vez que se instancie o volume, os datos estarán ahí persistentes.
 
+### Que é un volumen: 
+- Volúmenes docker: Este tipo de volumes adóitase usar nos seguinte casos: 
+    - Para compartir datos entre contedores. Simplemente terán que usar o mesmo volume. 
+    - Para copias de seguridade xa sexa para que sexan usadas posteriormente por outros contedores ou para mover eses volumes a outros hosts.
+    - Cando quero almacenar os datos do meu contedor non localmente se non nun provedor cloud.
+- Bind Mount:  Se eliximos conseguir a persistencia dos datos dos contedores usando bind mount o que estamos a facer é **“mapear”(montar) unha parte do meu sistema de ficheiros**, da que eu normalmente teño o control, cunha parte do sistema de ficheiros do contedor. Por tanto podemos montar tanto directorios como ficheiros. Desta maneira conseguimos:
+    - Compartir ficheiros entre o host e os contedoras. 
+    - Que outras aplicacións que non sexan docker teñan acceso a eses ficheiros, xa sexan código, ficheiros, etc
+
+---- Ler información [sobre VOLUMES en docker](https://iesgn.github.io/curso_docker_2021/sesion3/volumenes.html)
 ### Paso 1: Instanciar o Docker/Contenedor de MariaDB e configurar variables de entorno de MariaDB para o acceso
 
 - Os datos das **variables de entorno** de mariaDB serán, usuario "usuariobd" o contrasinal do usuario será "passwordusuariobd", o contrasinal do root será "Abc123", e o nome da base de datos será "tendaBD":

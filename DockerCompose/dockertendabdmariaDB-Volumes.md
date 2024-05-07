@@ -4,6 +4,11 @@ Para resolver esta circunstancia, o que faremos é compartir unha carpeta co doc
 
 **```--volume nomeVOLUME:ruta_que_enlaza_no_docker```**
 
+Na versión [mariadb:jammy de docker Hub](https://github.com/MariaDB/mariadb-docker/blob/d7a950d41e9347ac94ad2d2f28469bff74858db7/11.3/Dockerfile), indica que o VOLUME é /var/lib/mysql.
+![Docker hub mariadb:jammy](images/mariadbjammy.png)
+
+### Engadir o volume na instancia ao DOCKER de mariadb:jammy.
+
 Na instancia ao docker engadimos esta liña e volvemos a executar:
 
 ```bash
@@ -21,7 +26,7 @@ Onde:
 - **/var/lib/mysql**  é onde garda a información da BD *mariaDB:jammy*.
 - **-p 3306:3306**  son os *"porto host onde se redirecciona: porto docker"* onde corre mariadb.
 
-### Bind volumes
+### volumes
 
 Si lanzamos o contenedor deste xeito, estamos direccionando o volumen **tendaBD** do noso **host**, á **/var/lib/mysql** do **docker**.
 
